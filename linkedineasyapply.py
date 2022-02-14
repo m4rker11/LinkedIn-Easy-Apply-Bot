@@ -76,7 +76,7 @@ class LinkedinEasyApply:
                     job_page_number += 1
                     print("Going to job page " + str(job_page_number))
                     self.next_job_page(position, location_url, job_page_number)
-                    time.sleep(random.uniform(1.5, 3.5))
+                    time.sleep(random.uniform(3.5, 6.5))
                     print("Starting the application process for this page...")
                     self.apply_jobs(location)
                     print("Applying to jobs on this page has been completed!")
@@ -87,7 +87,7 @@ class LinkedinEasyApply:
                         time.sleep(time_left)
                         minimum_page_time = time.time() + minimum_time
                     if page_sleep % 5 == 0:
-                        sleep_time = random.randint(500, 900)
+                        sleep_time = random.randint(300, 900)
                         print("Sleeping for " + str(sleep_time/60) + " minutes.")
                         time.sleep(sleep_time)
                         page_sleep += 1
@@ -101,7 +101,7 @@ class LinkedinEasyApply:
                 time.sleep(time_left)
                 minimum_page_time = time.time() + minimum_time
             if page_sleep % 5 == 0:
-                sleep_time = random.randint(500, 900)
+                sleep_time = random.randint(300, 900)
                 print("Sleeping for " + str(sleep_time/60) + " minutes.")
                 time.sleep(sleep_time)
                 page_sleep += 1
@@ -232,9 +232,9 @@ class LinkedinEasyApply:
                             self.unfollow()
                         except:
                             print("Failed to unfollow company!")
-                    time.sleep(random.uniform(1.5, 2.5))
+                    time.sleep(random.uniform(4.0, 6.2))
                     next_button.click()
-                    time.sleep(random.uniform(3.0, 5.0))
+                    time.sleep(random.uniform(5.2, 8.2))
 
                     if 'please enter a valid answer' in self.browser.page_source.lower() or 'file is required' in self.browser.page_source.lower():
                         retries -= 1
@@ -247,9 +247,9 @@ class LinkedinEasyApply:
             if retries == 0:
                 traceback.print_exc()
                 self.browser.find_element_by_class_name('artdeco-modal__dismiss').click()
-                time.sleep(random.uniform(3, 5))
+                time.sleep(random.uniform(5, 9))
                 self.browser.find_elements_by_class_name('artdeco-modal__confirm-dialog-btn')[1].click()
-                time.sleep(random.uniform(3, 5))
+                time.sleep(random.uniform(4, 7))
                 raise Exception("Failed to apply to job!")
 
         closed_notification = False
@@ -349,7 +349,6 @@ class LinkedinEasyApply:
                         answer = 'no'
                     else:
                         answer = radio_options[len(radio_options) - 1]
-
                     i = 0
                     to_select = None
                     for radio in radios:
